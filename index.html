@@ -334,6 +334,33 @@
     }
 
     kemaskiniHalaman();
+    <script>
+  let sentuhanMulaX = null;
+
+  document.addEventListener("touchstart", function (e) {
+    sentuhanMulaX = e.touches[0].clientX;
+  });
+
+  document.addEventListener("touchend", function (e) {
+    if (sentuhanMulaX === null) return;
+
+    const sentuhanTamatX = e.changedTouches[0].clientX;
+    const bezaX = sentuhanMulaX - sentuhanTamatX;
+
+    if (Math.abs(bezaX) > 50) { // ambil kira gerakan jari besar dari 50px
+      if (bezaX > 0 && halamanSemasa < jumlahHalaman) {
+        halamanSemasa++;
+        kemaskiniHalaman();
+      } else if (bezaX < 0 && halamanSemasa > 1) {
+        halamanSemasa--;
+        kemaskiniHalaman();
+      }
+    }
+
+    sentuhanMulaX = null;
+  });
+</script>
+
   </script>
 </body>
 </html>
