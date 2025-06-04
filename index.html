@@ -60,10 +60,30 @@
       margin-bottom: 20px;
     }
     @media (max-width: 768px) {
-  .kandungan {
+  @media (max-width: 768px) {
+  /* Buang baris ini jika mahu kekalkan teks di kiri dan ilustrasi di kanan */
+  /* .kandungan {
     flex-direction: column;
     font-size: 22px;
+  } */
+
+  .kotak-teks, .kotak-ilustrasi {
+    width: 100%;
+    font-size: 20px;
   }
+
+  .navigasi {
+    flex-direction: column;
+    gap: 10px;
+    font-size: 16px;
+  }
+
+  .navigasi button {
+    width: 100%;
+    padding: 14px;
+    font-size: 24px;
+}
+
 
   .kotak-teks, .kotak-ilustrasi {
   flex: 1 1 48%;
