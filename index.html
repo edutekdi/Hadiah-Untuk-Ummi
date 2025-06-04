@@ -28,6 +28,27 @@
       font-size: 18px;
       font-weight: bold;
     }
+    .navigasi button {
+  font-size: 28px;         /* Besarkan ikon panah */
+  padding: 10px 20px;      /* Tambah ruang sekitar butang */
+  border: 2px solid #888;  /* Tambah sempadan */
+  border-radius: 8px;      /* Lembutkan bucu */
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.navigasi button:hover {
+  background-color: #f0f0f0;
+  transform: scale(1.1); /* Kesan zoom semasa hover */
+}
+    <div class="navigasi">
+  <button onclick="sebelum()">◀</button>
+  <span>Halaman 3 / 16</span>
+  <button onclick="seterusnya()">▶</button>
+</div>
+
 
     .kandungan {
       display: flex;
