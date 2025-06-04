@@ -285,6 +285,7 @@
     document.getElementById("prev").onclick = () => { if (halamanSemasa > 1) { halamanSemasa--; kemaskiniHalaman(); } };
     document.getElementById("next").onclick = () => { if (halamanSemasa < jumlahHalaman) { halamanSemasa++; kemaskiniHalaman(); } };
 
+
     function drag(ev) { ev.dataTransfer.setData("text", ev.target.innerText); }
     function allowDrop(ev) { ev.preventDefault(); }
     function drop(ev) {
