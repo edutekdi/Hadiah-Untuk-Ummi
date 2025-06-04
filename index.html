@@ -332,6 +332,28 @@
     }
 
     kemaskiniHalaman();
+    // Fungsi Slide (Swipe)
+let xStart = null;
+
+document.addEventListener('touchstart', function(evt) {
+  xStart = evt.touches[0].clientX;
+}, false);
+
+document.addEventListener('touchmove', function(evt) {
+  if (!xStart) return;
+  let xEnd = evt.touches[0].clientX;
+  let xDiff = xStart - xEnd;
+
+  if (Math.abs(xDiff) > 50) {
+    if (xDiff > 0 && halamanSemasa < jumlahHalaman) {
+      halamanSemasa++;
+    } else if (xDiff < 0 && halamanSemasa > 1) {
+      halamanSemasa--;
+    }
+    kemaskiniHalaman();
+    xStart = null;
+  }
+}, false);
   </script>
 </body>
 </html>
