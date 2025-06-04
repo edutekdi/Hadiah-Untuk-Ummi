@@ -334,45 +334,6 @@
     }
 
     kemaskiniHalaman();
-    
-// Tambah kod sentuhan di sini ⬇️
-let sentuhanMulaX = null;
-// ...
-
-    // Fungsi Swipe Touch (untuk skrin sentuh)
-let sentuhanMulaX = null;
-let sentuhanMulaY = null;
-
-document.addEventListener("touchstart", function (e) {
-  sentuhanMulaX = e.touches[0].clientX;
-  sentuhanMulaY = e.touches[0].clientY;
-}, false);
-
-document.addEventListener("touchend", function (e) {
-  if (sentuhanMulaX === null || sentuhanMulaY === null) return;
-
-  const sentuhanTamatX = e.changedTouches[0].clientX;
-  const sentuhanTamatY = e.changedTouches[0].clientY;
-  const bezaX = sentuhanMulaX - sentuhanTamatX;
-  const bezaY = sentuhanMulaY - sentuhanTamatY;
-
-  if (Math.abs(bezaX) > Math.abs(bezaY)) {
-    if (bezaX > 50 && halamanSemasa < jumlahHalaman) {
-      // Swipe kiri → next
-      halamanSemasa++;
-      kemaskiniHalaman();
-    } else if (bezaX < -50 && halamanSemasa > 1) {
-      // Swipe kanan → prev
-      halamanSemasa--;
-      kemaskiniHalaman();
-    }
-  }
-
-  // Reset nilai sentuhan
-  sentuhanMulaX = null;
-  sentuhanMulaY = null;
-}, false);
-
   </script>
 </body>
 </html>
