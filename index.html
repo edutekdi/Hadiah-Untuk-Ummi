@@ -334,6 +334,39 @@
     }
 
     kemaskiniHalaman();
+    // Fungsi Swipe Halaman Stabil
+let startX = 0;
+let isSwiping = false;
+
+document.querySelector(".pembungkus").addEventListener("touchstart", function(e) {
+  if (e.touches.length === 1) {
+    startX = e.touches[0].clientX;
+    isSwiping = true;
+  }
+}, { passive: true });
+
+document.querySelector(".pembungkus").addEventListener("touchmove", function(e) {
+  if (!isSwiping) return;
+  const deltaX = e.touches[0].clientX - startX;
+
+  if (Math.abs(deltaX) > 50) {
+    if (deltaX < 0 && halamanSemasa < jumlahHalaman) {
+      // Swipe kiri
+      halamanSemasa++;
+      kemaskiniHalaman();
+    } else if (deltaX > 0 && halamanSemasa > 1) {
+      // Swipe kanan
+      halamanSemasa--;
+      kemaskiniHalaman();
+    }
+    isSwiping = false; // elak swipe berganda
+  }
+}, { passive: true });
+
+document.querySelector(".pembungkus").addEventListener("touchend", function() {
+  isSwiping = false;
+}, { passive: true });
+
   </script>
 </body>
 </html>
