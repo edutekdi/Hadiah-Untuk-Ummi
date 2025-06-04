@@ -20,7 +20,17 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
 
-   .navigasi button {
+  .navigasi {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  width: 100%;
+}
+
+.navigasi button {
   background-color: #52b788;
   color: white;
   border: none;
@@ -29,11 +39,11 @@
   font-size: 28px;
   font-weight: bold;
   cursor: pointer;
-  transition: transform 0.2s ease;
 }
 
-.navigasi button:hover {
-  transform: scale(1.05);
+.navigasi span {
+  flex-grow: 1;
+  text-align: center;
 }
 
 
