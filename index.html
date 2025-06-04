@@ -335,31 +335,44 @@
 
     kemaskiniHalaman();
     
-  <script>
-  let sentuhanMulaX = null;
+// Tambah kod sentuhan di sini ⬇️
+let sentuhanMulaX = null;
+// ...
 
-  document.addEventListener("touchstart", function (e) {
-    sentuhanMulaX = e.touches[0].clientX;
-  });
+    // Fungsi Swipe Touch (untuk skrin sentuh)
+let sentuhanMulaX = null;
+let sentuhanMulaY = null;
 
-  document.addEventListener("touchend", function (e) {
-    if (sentuhanMulaX === null) return;
+document.addEventListener("touchstart", function (e) {
+  sentuhanMulaX = e.touches[0].clientX;
+  sentuhanMulaY = e.touches[0].clientY;
+}, false);
 
-    const sentuhanTamatX = e.changedTouches[0].clientX;
-    const bezaX = sentuhanMulaX - sentuhanTamatX;
+document.addEventListener("touchend", function (e) {
+  if (sentuhanMulaX === null || sentuhanMulaY === null) return;
 
-    if (Math.abs(bezaX) > 50) { // ambil kira gerakan jari besar dari 50px
-      if (bezaX > 0 && halamanSemasa < jumlahHalaman) {
-        halamanSemasa++;
-        kemaskiniHalaman();
-      } else if (bezaX < 0 && halamanSemasa > 1) {
-        halamanSemasa--;
-        kemaskiniHalaman();
-      }
+  const sentuhanTamatX = e.changedTouches[0].clientX;
+  const sentuhanTamatY = e.changedTouches[0].clientY;
+  const bezaX = sentuhanMulaX - sentuhanTamatX;
+  const bezaY = sentuhanMulaY - sentuhanTamatY;
+
+  if (Math.abs(bezaX) > Math.abs(bezaY)) {
+    if (bezaX > 50 && halamanSemasa < jumlahHalaman) {
+      // Swipe kiri → next
+      halamanSemasa++;
+      kemaskiniHalaman();
+    } else if (bezaX < -50 && halamanSemasa > 1) {
+      // Swipe kanan → prev
+      halamanSemasa--;
+      kemaskiniHalaman();
     }
+  }
 
-    sentuhanMulaX = null;
-  });
+  // Reset nilai sentuhan
+  sentuhanMulaX = null;
+  sentuhanMulaY = null;
+}, false);
+
   </script>
 </body>
 </html>
