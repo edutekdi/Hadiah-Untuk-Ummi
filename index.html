@@ -2,7 +2,6 @@
 <html lang="ms">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Halaman Bacaan Interaktif</title>
   <style>
     body {
@@ -26,30 +25,9 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 20px;
-      font-size: 40px;
+      font-size: 18px;
       font-weight: bold;
     }
-    .navigasi button {
-  font-size: 40px;         /* Besarkan ikon panah */
-  padding: 10px 20px;      /* Tambah ruang sekitar butang */
-  border: 5px solid #888;  /* Tambah sempadan */
-  border-radius: 15px;      /* Lembutkan bucu */
-  background-color: #ffffff;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-.navigasi button:hover {
-  background-color: #f0f0f0;
-  transform: scale(1.1); /* Kesan zoom semasa hover */
-}
-    <div class="navigasi">
-  <button onclick="sebelum()">◀</button>
-  <span>Halaman 3 / 16</span>
-  <button onclick="seterusnya()">▶</button>
-</div>
-
 
     .kandungan {
       display: flex;
@@ -58,7 +36,8 @@
       gap: 20px;
       margin-bottom: 20px;
     }
- .kotak-teks, .kotak-ilustrasi {
+
+    .kotak-teks, .kotak-ilustrasi {
       flex: 1;
       min-height: 250px;
       border: 2px solid #ccc;
@@ -70,12 +49,13 @@
       justify-content: center;
       text-align: center;
     }
-.highlight {
+
+    .highlight {
       background-color: yellow;
       padding: 10px;
       border-radius: 5px;
     }
- 
+
     .kotak-ilustrasi img {
       max-width: 100%;
       max-height: 300px;
@@ -94,16 +74,16 @@
     }
 
     .kuiz {
-      border: 5px dashed #999;
-      padding: 20px;
-      border-radius: 15px;
+      border: 2px dashed #999;
+      padding: 15px;
+      border-radius: 10px;
       background-color: #f2f2f2;
       text-align: center;
-       font-size: 20px; /* Tambah ini */
+      font-size: 20px;
     }
     /* Tambahan untuk pembesaran kuiz */
 .soalan-kuiz {
-  font-size: 35px;
+  font-size: 25px;
   font-weight: bold;
   margin-bottom: 15px;
 }
@@ -149,7 +129,7 @@
     <div class="kandungan">
       <div class="kotak-teks" id="teksCerita"></div>
       <div class="kotak-ilustrasi">
-        <img src="images/coverdepan.png" alt="Ilustrasi" id="ilustrasi"> 
+        <img src="images/coverdepan.png" alt="Ilustrasi" id="ilustrasi">
       </div>
     </div>
 
@@ -197,7 +177,7 @@
         ilustrasi: 'images/halaman3.png',
         audio: 'audio/audio3.mp3',
         kuiz: true,
-        soalan:`<span id='drop-zone' ondrop='drop(event)' ondragover='allowDrop(event)' style='display:inline-block; min-width:80px; border-bottom:2px dashed #666;'>&nbsp;</span>mengetuk pintu bilik Aisyah.`,
+        soalan: `“<span id='drop-zone' ondrop='drop(event)' ondragover='allowDrop(event)' style='display:inline-block; min-width:80px; border-bottom:2px dashed #666;'>&nbsp;</span> mengetuk pintu bilik Aisyah.”`,
         jawapan: 'ummi',
         pilihan: ['Ummi', 'Ali', 'Aisyah']
       },
@@ -321,20 +301,25 @@
       teks.classList.remove("highlight");
       if (data.kuiz) {
         kuizHalaman.innerHTML = `
-          <strong>Kuiz:</strong>
-          <p>${data.soalan}</p>
-          <div style='margin-top:10px;'>
-            ${data.pilihan.map((pilih, i) => `<span draggable="true" ondragstart="drag(event)" id="drag${i}" style="padding:6px 12px; background-color:#f0f0f0; border:1px solid #666; border-radius:6px; cursor:grab; margin:5px;">${pilih}</span>`).join('')}
-          </div>
-          <button onclick="resetKuiz()" style="margin-top:10px; padding:5px 15px; font-size:19px;">🔄 Reset Kuiz</button>
-          <p id="jawapan-status" style="margin-top:10px; font-weight:bold;"></p>
-        `;
+         <strong>Kuiz:</strong>
+  <p class="soalan-kuiz">${data.soalan}</p>
+  <div class="butang-kuiz">
+    ${data.pilihan.map((pilih, i) => `
+      <span draggable="true" ondragstart="drag(event)" id="drag${i}">
+        ${pilih}
+      </span>
+    `).join('')}
+  </div>
+  <br>
+  <button onclick="resetKuiz()">🔄 Reset Kuiz</button>
+  <p id="jawapan-status" style="margin-top:10px; font-weight:bold;"></p>
+`;
       }
     }
+    
 
     document.getElementById("prev").onclick = () => { if (halamanSemasa > 1) { halamanSemasa--; kemaskiniHalaman(); } };
     document.getElementById("next").onclick = () => { if (halamanSemasa < jumlahHalaman) { halamanSemasa++; kemaskiniHalaman(); } };
-
 
     function drag(ev) { ev.dataTransfer.setData("text", ev.target.innerText); }
     function allowDrop(ev) { ev.preventDefault(); }
@@ -382,28 +367,6 @@
     }
 
     kemaskiniHalaman();
-    // Fungsi Slide (Swipe)
-let xStart = null;
-
-document.addEventListener('touchstart', function(evt) {
-  xStart = evt.touches[0].clientX;
-}, false);
-
-document.addEventListener('touchmove', function(evt) {
-  if (!xStart) return;
-  let xEnd = evt.touches[0].clientX;
-  let xDiff = xStart - xEnd;
-
-  if (Math.abs(xDiff) > 50) {
-    if (xDiff > 0 && halamanSemasa < jumlahHalaman) {
-      halamanSemasa++;
-    } else if (xDiff < 0 && halamanSemasa > 1) {
-      halamanSemasa--;
-    }
-    kemaskiniHalaman();
-    xStart = null;
-  }
-}, false);
   </script>
 </body>
 </html>
