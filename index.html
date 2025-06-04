@@ -10,21 +10,6 @@
       padding: 20px;
       background-color: #f8f8f8;
     }
-@keyframes flipMasuk {
-  from {
-    transform: rotateY(90deg);
-    opacity: 0;
-  }
-  to {
-    transform: rotateY(0deg);
-    opacity: 1;
-  }
-}
-
-.teks-animasi,
-.ilustrasi-animasi {
-  animation: flipMasuk 0.5s ease-in-out;
-}
 
     .pembungkus {
       background-color: white;
@@ -286,14 +271,6 @@
       teks.classList.remove("highlight");
             rakamanAudio.style.display = 'none';
       teks.classList.remove("highlight");
-
-      // ⬇️ Tambahan animasi selak halaman
-      teks.classList.remove("teks-animasi");
-      ilustrasi.classList.remove("ilustrasi-animasi");
-      void teks.offsetWidth;
-      void ilustrasi.offsetWidth;
-      teks.classList.add("teks-animasi");
-      ilustrasi.classList.add("ilustrasi-animasi");
 
       if (data.kuiz) {
         kuizHalaman.innerHTML = `
