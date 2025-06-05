@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html lang="ms">
-<head>
-  <script>
+<!-- Cegah klik kanan dan view source -->
+<script>
+  // Sekat klik kanan
   document.addEventListener('contextmenu', event => event.preventDefault());
-  document.addEventListener('keydown', function(e) {
-    if (e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I")) {
+
+  // Sekat kekunci pintas tertentu
+  document.addEventListener('keydown', function (e) {
+    // Sekat F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+    if (
+      e.key === 'F12' ||
+      (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) ||
+      (e.ctrlKey && e.key === 'U')
+    ) {
       e.preventDefault();
     }
   });
@@ -13,6 +21,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Halaman Bacaan Interaktif</title>
   <style>
+  body {
+    -webkit-user-select: none; /* Chrome/Safari */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* Internet Explorer/Edge */
+    user-select: none;         /* Standard */
+  }
     body {
       font-family: 'Century Gothic';
       margin: 0;
