@@ -145,6 +145,41 @@
       color: gold;
       margin-top: 10px;
     }
+
+    .kandungan {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.kotak-teks, .kotak-ilustrasi {
+  flex: 1 1 48%;
+  min-width: 250px;
+  box-sizing: border-box;
+}
+
+.kotak-teks {
+  font-size: 28px;
+  text-align: justify;
+}
+
+@media (max-width: 768px) {
+  .kandungan {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .kotak-teks, .kotak-ilustrasi {
+    width: 100%;
+    text-align: center;
+  }
+
+  .kotak-teks {
+    font-size: 22px;
+  }
+}
   </style>
 </head>
 <body>
